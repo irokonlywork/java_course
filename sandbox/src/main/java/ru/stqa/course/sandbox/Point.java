@@ -9,13 +9,13 @@ public class Point {
         this.y = y;
     }
 
-    double distance(double х, double у) {
+    public double distance(double х, double у) {
         double dx = this.x - х;
         double dy = this.y - у;
         return Math.sqrt(dx*dx + dy*dy);
     }
 
-    double distance(Point p) {
+    public double distance(Point p) {
         return distance(p.x, p.y);
     }
 }
