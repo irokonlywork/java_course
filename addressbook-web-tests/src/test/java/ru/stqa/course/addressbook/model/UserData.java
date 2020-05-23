@@ -1,4 +1,4 @@
-package ru.stqa.course.addressbook;
+package ru.stqa.course.addressbook.model;
 
 public class UserData {
     private final String firstname;

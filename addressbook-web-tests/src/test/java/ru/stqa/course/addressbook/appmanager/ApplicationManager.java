@@ -1,24 +1,23 @@
-package ru.stqa.course.addressbook;
+package ru.stqa.course.addressbook.appmanager;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.NoAlertPresentException;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
-import org.testng.annotations.AfterMethod;
-import org.testng.annotations.BeforeMethod;
+import ru.stqa.course.addressbook.model.GroupData;
+import ru.stqa.course.addressbook.model.UserData;
 
 import java.util.concurrent.TimeUnit;
 
-public class TestBase {
+public class ApplicationManager {
     private WebDriver wd;
 
-    @BeforeMethod(alwaysRun = true)
-    public void setUp() throws Exception {
-      wd = new ChromeDriver();
-      wd.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
-      wd.get("https://localhost/addressbook/index.php");
-      login("user", "admin", "pass", "secret", By.xpath("//input[@value='Login']"));
+    public void init() {
+        wd = new ChromeDriver();
+        wd.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
+        wd.get("https://localhost/addressbook/index.php");
+        login("user", "admin", "pass", "secret", By.xpath("//input[@value='Login']"));
     }
 
     private void login(String user, String username, String pass, String password, By xpath) {
@@ -30,15 +29,15 @@ public class TestBase {
       wd.findElement(xpath).click();
     }
 
-    protected void returnToGroupPage() {
+    public void returnToGroupPage() {
       wd.findElement(By.linkText("Logout")).click();
     }
 
-    protected void submitGroupCreation(String s) {
+    public void submitGroupCreation(String s) {
       wd.findElement(By.linkText(s)).click();
     }
 
-    protected void fillGroupForm(GroupData groupData) {
+    public void fillGroupForm(GroupData groupData) {
       wd.findElement(By.name("group_name")).click();
       wd.findElement(By.name("group_name")).clear();
       wd.findElement(By.name("group_name")).sendKeys(groupData.getName());
@@ -51,17 +50,16 @@ public class TestBase {
       wd.findElement(By.name("submit")).click();
     }
 
-    protected void initGroupCreation(String s) {
+    public void initGroupCreation(String s) {
       wd.findElement(By.name(s)).click();
     }
 
-    protected void gotoGroupPage(String groups) {
+    public void gotoGroupPage(String groups) {
       wd.findElement(By.linkText(groups)).click();
     }
 
-    @AfterMethod(alwaysRun = true)
-    public void tearDown() throws Exception {
-      wd.quit();
+    public void stop() {
+        wd.quit();
     }
 
     private boolean isElementPresent(By by) {
@@ -82,19 +80,19 @@ public class TestBase {
       }
     }
 
-    protected void deleteSelectedGroups(String delete) {
+    public void deleteSelectedGroups(String delete) {
       wd.findElement(By.name(delete)).click();
     }
 
-    protected void selectGroup(String s) {
+    public void selectGroup(String s) {
       wd.findElement(By.name(s)).click();
     }
 
-    protected void logout(String logout) {
+    public void logout(String logout) {
       wd.findElement(By.linkText(logout)).click();
     }
 
-    protected void fillUserForm(UserData userData) {
+    public void fillUserForm(UserData userData) {
       wd.findElement(By.name("firstname")).click();
       wd.findElement(By.name("firstname")).clear();
       wd.findElement(By.name("firstname")).sendKeys(userData.getFirstname());
@@ -106,15 +104,15 @@ public class TestBase {
       wd.findElement(By.name("email")).sendKeys(userData.getEmail());
     }
 
-    protected void submitUserCreation(By xpath) {
+    public void submitUserCreation(By xpath) {
       wd.findElement(xpath).click();
     }
 
-    protected void returnToHomePage(String s) {
+    public void returnToHomePage(String s) {
       wd.findElement(By.linkText(s)).click();
     }
 
-    protected void gotoNewUserPage(String s) {
+    public void gotoNewUserPage(String s) {
       wd.findElement(By.linkText(s)).click();
     }
 }
