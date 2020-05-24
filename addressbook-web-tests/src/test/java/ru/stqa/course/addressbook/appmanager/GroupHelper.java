@@ -14,15 +14,14 @@ public class GroupHelper extends HelperBase {
         click(By.linkText("Logout"));
     }
 
-    public void submitGroupCreation(String s) {
-        click(By.linkText(s));
+    public void submitGroupCreation() {
+        click(By.name("submit"));
     }
 
     public void fillGroupForm(GroupData groupData) {
         type(By.name("group_name"), groupData.getName());
         type(By.name("group_header"), groupData.getHeader());
         type(By.name("group_footer"), groupData.getFooter());
-        click(By.name("submit"));
     }
 
     public void initGroupCreation(String s) {
@@ -35,5 +34,13 @@ public class GroupHelper extends HelperBase {
 
     public void selectGroup(String s) {
         click(By.name(s));
+    }
+
+    public void initGroupModification() {
+        click(By.name("edit"));
+    }
+
+    public void submitGroupModification() {
+        click(By.name("update"));
     }
 }
