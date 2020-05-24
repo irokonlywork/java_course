@@ -1,11 +1,11 @@
 package ru.stqa.course.addressbook.model;
 
-public class UserData {
+public class ContactData {
     private final String firstname;
     private final String lastname;
     private final String email;
 
-    public UserData(String firstname, String lastname, String email) {
+    public ContactData(String firstname, String lastname, String email) {
         this.firstname = firstname;
         this.lastname = lastname;
         this.email = email;
