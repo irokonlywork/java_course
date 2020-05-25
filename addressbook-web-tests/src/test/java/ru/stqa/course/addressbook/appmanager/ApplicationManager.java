@@ -29,12 +29,16 @@ public class ApplicationManager {
         wd.quit();
     }
 
-    public void logout(String logout) {
-      wd.findElement(By.linkText(logout)).click();
+    public void logout() {
+        click(By.linkText("Logout"));
     }
 
-    public void returnToHomePage(String s) {
-      wd.findElement(By.linkText(s)).click();
+    private void click(By locator) {
+        wd.findElement(locator).click();
+    }
+
+    public void returnToHomePage() {
+        click(By.linkText("home page"));
     }
 
     public GroupHelper getGroupHelper() {

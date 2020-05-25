@@ -16,20 +16,20 @@ public class ContactHelper extends HelperBase {
         type(By.name("email"), contactData.getEmail());
     }
 
-    public void submitContactCreation(By xpath) {
-        click(xpath);
+    public void submitContactCreation() {
+        click(By.xpath("(//input[@name='submit'])[2]"));
     }
 
-    public void gotoNewContactPage(String s) {
-        click(By.linkText(s));
+    public void gotoNewContactPage() {
+        click(By.linkText("add new"));
     }
 
-    public void initContactModification(String edit){
-        click(By.xpath(edit));
+    public void initContactModification(){
+        click(By.xpath("//img[@alt='Edit']"));
     }
 
-    public void submitContactModification(String update){
-        click(By.xpath(update));
+    public void submitContactModification(){
+        click(By.xpath("(//input[@name='update'])[2]"));
     }
 
     public void selectContact() {
