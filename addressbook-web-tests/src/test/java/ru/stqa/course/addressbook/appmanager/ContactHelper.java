@@ -33,7 +33,7 @@ public class ContactHelper extends HelperBase {
     }
 
     public void selectContact() {
-        click(By.id("6"));
+        click(By.xpath("(//input[@name='selected[]'])"));
     }
 
     public void deleteSelectedContact(){
