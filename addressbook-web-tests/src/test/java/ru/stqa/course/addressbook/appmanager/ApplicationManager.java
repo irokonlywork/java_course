@@ -31,7 +31,7 @@ public class ApplicationManager {
         } else if ( browser.equals(BrowserType.SAFARI) ) {
             wd = new SafariDriver();
         }
-        wd.manage().timeouts().implicitlyWait(3, TimeUnit.SECONDS);
+        wd.manage().timeouts().implicitlyWait(0, TimeUnit.SECONDS);
         wd.get("https://localhost/addressbook/index.php");
         groupHelper = new GroupHelper(wd);
         navigationHelper = new NavigationHelper(wd);
