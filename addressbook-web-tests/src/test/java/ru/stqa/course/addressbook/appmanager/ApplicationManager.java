@@ -31,7 +31,7 @@ public class ApplicationManager {
         } else if ( browser.equals(BrowserType.SAFARI) ) {
             wd = new SafariDriver();
         }
-        wd.manage().timeouts().implicitlyWait(2, TimeUnit.SECONDS);
+        wd.manage().timeouts().implicitlyWait(3, TimeUnit.SECONDS);
         wd.get("https://localhost/addressbook/index.php");
         groupHelper = new GroupHelper(wd);
         navigationHelper = new NavigationHelper(wd);
@@ -52,9 +52,7 @@ public class ApplicationManager {
         wd.findElement(locator).click();
     }
 
-    public void returnToHomePage() {
-        click(By.linkText("home page"));
-    }
+
 
     public GroupHelper getGroupHelper() {
         return groupHelper;
