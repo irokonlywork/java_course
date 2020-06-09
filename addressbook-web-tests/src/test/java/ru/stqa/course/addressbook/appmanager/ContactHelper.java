@@ -36,8 +36,8 @@ public class ContactHelper extends HelperBase {
         click(By.linkText("add new"));
     }
 
-    public void initContactModification(int index){
-        wd.findElements(By.xpath("//img[@alt='Edit']")).get(index).click();
+    public void initContactModification(){
+        click(By.xpath("//img[@alt='Edit']"));
     }
 
     public void submitContactModification(){
@@ -67,7 +67,7 @@ public class ContactHelper extends HelperBase {
         gotoHomePage();
     }
 
-    private void gotoHomePage() {
+    public void gotoHomePage() {
         if ( isElementPresent(By.id("maintable")) ) {
             return;
         }
@@ -82,15 +82,18 @@ public class ContactHelper extends HelperBase {
         return wd.findElements(By.name("selected[]")).size();
     }
 
+
+
     public List<ContactData> getContactList() {
         List<ContactData> contacts = new ArrayList<>();
         List<WebElement> elements = wd.findElements(By.name("entry"));
         for (WebElement element : elements) {
-            String fistname = element.getText();
-            String lastname = element.getText();
-            ContactData contact = new ContactData(fistname, lastname, null, null);
-            contacts.add(contact);
-        }
+            List<WebElement> cells = element.findElements(By.cssSelector("td")); //разбивает строку на ячейки
+                String lastname = cells.get(1).getText();
+                String firstname = cells.get(2).getText();
+                ContactData contact = new ContactData(firstname, lastname, null, null);
+                contacts.add(contact);
+            }
         return contacts;
     }
 }
