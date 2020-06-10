@@ -74,6 +74,14 @@ public class ContactHelper extends HelperBase {
         click(By.linkText("home page"));
     }
 
+    public void await() {
+        wd.findElements(By.cssSelector("div.msgbox"));
+    }
+
+    public void refresh() {
+        wd.get("https://localhost/addressbook/index.php");
+    }
+
     public boolean isThereAContact() {
         return isElementPresent(By.name("selected[]"));
     }
@@ -82,8 +90,6 @@ public class ContactHelper extends HelperBase {
         return wd.findElements(By.name("selected[]")).size();
     }
 
-
-
     public List<ContactData> getContactList() {
         List<ContactData> contacts = new ArrayList<>();
         List<WebElement> elements = wd.findElements(By.name("entry"));
@@ -91,7 +97,8 @@ public class ContactHelper extends HelperBase {
             List<WebElement> cells = element.findElements(By.cssSelector("td")); //разбивает строку на ячейки
                 String lastname = cells.get(1).getText();
                 String firstname = cells.get(2).getText();
-                ContactData contact = new ContactData(firstname, lastname, null, null);
+                int id = Integer.parseInt(element.findElement(By.tagName("input")).getAttribute("value"));
+                ContactData contact = new ContactData(id, firstname, lastname, null, null);
                 contacts.add(contact);
             }
         return contacts;
