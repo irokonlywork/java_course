@@ -60,14 +60,29 @@ public class ContactHelper extends HelperBase {
         wd.switchTo().alert().accept();
     }
 
-    public void createContact(ContactData contact, boolean creation) {
+    public void create(ContactData contact, boolean creation) {
         gotoNewContactPage();
         fillContactForm(contact, creation);
         submitContactCreation();
-        gotoHomePage();
+        homePage();
     }
 
-    public void gotoHomePage() {
+    public void modify(int index, ContactData contact) {
+        initContactModification(index);
+        fillContactForm(contact, false);
+        submitContactModification();
+        homePage();
+    }
+
+    public void delete(int index) {
+        selectContact(index);
+        deleteSelectedContact();
+        selectAlert();
+        switchTo();
+        refresh();
+    }
+
+    public void homePage() {
         if ( isElementPresent(By.id("maintable")) ) {
             return;
         }
@@ -90,7 +105,7 @@ public class ContactHelper extends HelperBase {
         return wd.findElements(By.name("selected[]")).size();
     }
 
-    public List<ContactData> getContactList() {
+    public List<ContactData> list() {
         List<ContactData> contacts = new ArrayList<>();
         List<WebElement> elements = wd.findElements(By.name("entry"));
         for (WebElement element : elements) {
