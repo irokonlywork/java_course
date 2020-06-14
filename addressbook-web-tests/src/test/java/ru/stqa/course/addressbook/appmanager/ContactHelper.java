@@ -44,6 +44,14 @@ public class ContactHelper extends HelperBase {
         wd.findElement(By.cssSelector("a[href='edit.php?id=" + id +"']")).click();
     }
 
+    private void initContactModificationById2(int id) {
+        WebElement checkbox = wd.findElement(By.cssSelector(String.format("input[value='%s']", id))); //находим чекбокс
+        WebElement row = checkbox.findElement(By.xpath("./../..")); //поиск относительно чекбокса по xpath запросу, переход к родительскому элементу (т.е. к строке)
+        List<WebElement> cells = row.findElements(By.tagName("td")); //из полного списка ячеек берем все элементы с tagName td
+        cells.get(7).findElement(By.tagName("a")).click(); //среди найденных ячеек берем по номеру нужную (по номеру столбца), внутри ячейки находим ссылку tagName("a")
+    }
+
+
     public void submitContactModification(){
         click(By.xpath("(//input[@name='update'])[2]"));
     }
@@ -129,5 +137,17 @@ public class ContactHelper extends HelperBase {
             contactCache.add(new ContactData().withId(id).withFirstname(firstname).withLastname(lastname));
             }
         return new Contacts(contactCache);
+    }
+
+    public ContactData infoFromEditForm(ContactData contact) {
+        initContactModificationById(contact.getId());
+        String firstname = wd.findElement(By.name("firstname")).getAttribute("value");
+        String lastname = wd.findElement(By.name("lastname")).getAttribute("value");
+        String home = wd.findElement(By.name("home")).getAttribute("value");
+        String mobile = wd.findElement(By.name("mobile")).getAttribute("value");
+        String work = wd.findElement(By.name("work")).getAttribute("value");
+        wd.navigate().back();
+        return new ContactData().withId(contact.getId()).withFirstname(firstname).withLastname(lastname)
+                .withHomePhone(home).withMobilePhone(mobile).withWorkPhone(work);
     }
 }

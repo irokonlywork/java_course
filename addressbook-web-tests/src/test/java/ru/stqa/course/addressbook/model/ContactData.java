@@ -6,6 +6,9 @@ public class ContactData {
     private String lastname;
     private String email;
     private String group;
+    private String homePhone;
+    private String mobilePhone;
+    private String workPhone;
 
     public ContactData withId(int id) {
         this.id = id;
@@ -29,6 +32,21 @@ public class ContactData {
 
     public ContactData withGroup(String group) {
         this.group = group;
+        return this;
+    }
+
+    public ContactData withHomePhone(String home) {
+        this.homePhone = home;
+        return this;
+    }
+
+    public ContactData withMobilePhone(String mobile) {
+        this.mobilePhone = mobile;
+        return this;
+    }
+
+    public ContactData withWorkPhone(String work) {
+        this.workPhone = work;
         return this;
     }
 
