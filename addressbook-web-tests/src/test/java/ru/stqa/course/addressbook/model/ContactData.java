@@ -10,6 +10,13 @@ public class ContactData {
     private String mobilePhone;
     private String workPhone;
     private String allPhones;
+    private String homeAddress;
+    private String secondaryAddress;
+    private String allAddresses;
+    private String oneEmail;
+    private String twoEmail;
+    private String threeEmail;
+    private String allEmails;
 
     public ContactData withId(int id) {
         this.id = id;
@@ -56,6 +63,41 @@ public class ContactData {
         return this;
     }
 
+    public ContactData withHomeAddress(String home) {
+        this.homeAddress = home;
+        return this;
+    }
+
+    public ContactData withSecondaryAddress(String secondary) {
+        this.secondaryAddress = secondary;
+        return this;
+    }
+
+    public ContactData withAllAddresses(String allAddresses) {
+        this.allAddresses = allAddresses;
+        return this;
+    }
+
+    public ContactData withOneEmail(String email) {
+        this.oneEmail = email;
+        return this;
+    }
+
+    public ContactData withTwoEmail(String email2) {
+        this.twoEmail = email2;
+        return this;
+    }
+
+    public ContactData withThreeEmail(String email3) {
+        this.threeEmail = email3;
+        return this;
+    }
+
+    public ContactData withAllEmails(String allEmails) {
+        this.allEmails = allEmails;
+        return this;
+    }
+
     public int getId() {
         return id;
     }
@@ -90,6 +132,34 @@ public class ContactData {
 
     public String getAllPhones() {
         return allPhones;
+    }
+
+    public String getHomeAddress() {
+        return homeAddress;
+    }
+
+    public String getSecondaryAddress() {
+        return secondaryAddress;
+    }
+
+    public String getAllAddresses() {
+        return allAddresses;
+    }
+
+    public String getOneEmail() {
+        return oneEmail;
+    }
+
+    public String getTwoEmail() {
+        return twoEmail;
+    }
+
+    public String getThreeEmail() {
+        return threeEmail;
+    }
+
+    public String getAllEmails() {
+        return allEmails;
     }
 
     @Override

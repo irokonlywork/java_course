@@ -1,13 +1,13 @@
 package ru.stqa.course.addressbook.tests;
 
-import org.testng.Assert;
-import org.testng.annotations.BeforeMethod;
-import org.testng.annotations.Test;
-import ru.stqa.course.addressbook.model.ContactData;
-import ru.stqa.course.addressbook.model.Contacts;
+        import org.testng.Assert;
+        import org.testng.annotations.BeforeMethod;
+        import org.testng.annotations.Test;
+        import ru.stqa.course.addressbook.model.ContactData;
+        import ru.stqa.course.addressbook.model.Contacts;
 
-import static org.hamcrest.CoreMatchers.equalTo;
-import static org.hamcrest.MatcherAssert.assertThat;
+        import static org.hamcrest.CoreMatchers.equalTo;
+        import static org.hamcrest.MatcherAssert.assertThat;
 
 public class ContactModificationTests extends TestBase {
 
