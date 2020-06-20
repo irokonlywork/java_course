@@ -2,16 +2,16 @@
   {
     "firstname": "Irok 0",
     "lastname": "Test 0",
-    "email": "new@email.com 0"
+    "email": "new@email0.com"
   },
   {
     "firstname": "Irok 1",
     "lastname": "Test 1",
-    "email": "new@email.com 1"
+    "email": "new@email1.com"
   },
   {
     "firstname": "Irok 2",
     "lastname": "Test 2",
-    "email": "new@email.com 2"
+    "email": "new@email2.com"
   }
 ]
