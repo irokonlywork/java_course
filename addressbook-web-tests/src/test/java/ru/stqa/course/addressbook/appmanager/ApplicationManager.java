@@ -52,8 +52,6 @@ public class ApplicationManager {
         wd.findElement(locator).click();
     }
 
-
-
     public GroupHelper group() {
         return groupHelper;
     }

@@ -12,6 +12,8 @@ import java.util.List;
 
 public class ContactHelper extends HelperBase {
 
+    private Contacts contactCache = null;
+
     public ContactHelper(WebDriver wd) {
         super(wd);
     }
@@ -20,9 +22,12 @@ public class ContactHelper extends HelperBase {
         type(By.name("firstname"), contactData.getFirstname());
         type(By.name("lastname"), contactData.getLastname());
         type(By.name("email"), contactData.getEmail());
+        attach(By.name("photo"), contactData.getPhoto());
 
         if ( creation ) {
-            new Select(wd.findElement(By.name("new_group"))).selectByVisibleText(contactData.getGroup());
+            if (contactData.getGroup() != null) {
+                new Select(wd.findElement(By.name("new_group"))).selectByVisibleText(contactData.getGroup());
+            }
         } else {
             Assert.assertFalse(isElementPresent(By.name("new_group")));
         }
@@ -50,7 +55,6 @@ public class ContactHelper extends HelperBase {
         List<WebElement> cells = row.findElements(By.tagName("td")); //из полного списка ячеек берем все элементы с tagName td
         cells.get(7).findElement(By.tagName("a")).click(); //среди найденных ячеек берем по номеру нужную (по номеру столбца), внутри ячейки находим ссылку tagName("a")
     }
-
 
     public void submitContactModification(){
         click(By.xpath("(//input[@name='update'])[2]"));
@@ -119,8 +123,6 @@ public class ContactHelper extends HelperBase {
     public int getContactCount() {
         return wd.findElements(By.name("selected[]")).size();
     }
-
-    private Contacts contactCache = null;
 
     public Contacts all() {
         if ( contactCache != null ) {
