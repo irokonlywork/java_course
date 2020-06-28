@@ -2,16 +2,13 @@
   {
     "firstname": "Irok 0",
     "lastname": "Test 0",
-    "email": "new@email0.com"
-  },
-  {
-    "firstname": "Irok 1",
-    "lastname": "Test 1",
-    "email": "new@email1.com"
-  },
-  {
-    "firstname": "Irok 2",
-    "lastname": "Test 2",
-    "email": "new@email2.com"
+    "email": "new@email0.com",
+    "homePhone": "7 777 777 77 77",
+    "mobilePhone": "7 888 888 88 88",
+    "workPhone": "7 999 999 99 99",
+    "homeAddress": "St. Test, 47",
+    "secondaryAddress": "St. New Test, 95",
+    "twoEmail": "new@email1.com",
+    "threeEmail": "new@email3.com"
   }
 ]

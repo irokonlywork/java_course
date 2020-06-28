@@ -22,7 +22,14 @@ public class ContactHelper extends HelperBase {
         type(By.name("firstname"), contactData.getFirstname());
         type(By.name("lastname"), contactData.getLastname());
         type(By.name("email"), contactData.getEmail());
-        attach(By.name("photo"), contactData.getPhoto());
+        type(By.name("home"), contactData.getHomePhone());
+        type(By.name("mobile"), contactData.getMobilePhone());
+        type(By.name("work"), contactData.getWorkPhone());
+        type(By.name("address"), contactData.getHomeAddress());
+        type(By.name("address2"), contactData.getSecondaryAddress());
+        type(By.name("email2"), contactData.getTwoEmail());
+        type(By.name("email3"), contactData.getThreeEmail());
+        //attach(By.name("photo"), contactData.getPhoto());
 
         if ( creation ) {
             if (contactData.getGroup() != null) {
@@ -154,13 +161,17 @@ public class ContactHelper extends HelperBase {
         String work = wd.findElement(By.name("work")).getAttribute("value");
         String homeAddress = wd.findElement(By.name("address")).getAttribute("value");
         String secondaryAddress = wd.findElement(By.name("address2")).getAttribute("value");
-        String oneEmail = wd.findElement(By.name("email")).getAttribute("value");
+        String email = wd.findElement(By.name("email")).getAttribute("value");
         String twoEmail = wd.findElement(By.name("email2")).getAttribute("value");
         String threeEmail = wd.findElement(By.name("email3")).getAttribute("value");
         wd.navigate().back();
         return new ContactData().withId(contact.getId()).withFirstname(firstname).withLastname(lastname)
                 .withHomePhone(home).withMobilePhone(mobile).withWorkPhone(work)
                 .withHomeAddress(homeAddress).withSecondaryAddress(secondaryAddress)
-                .withOneEmail(oneEmail).withTwoEmail(twoEmail).withThreeEmail(threeEmail);
+                .withEmail(email).withTwoEmail(twoEmail).withThreeEmail(threeEmail);
+    }
+
+    public int count() {
+        return wd.findElements(By.name("selected[]")).size();
     }
 }

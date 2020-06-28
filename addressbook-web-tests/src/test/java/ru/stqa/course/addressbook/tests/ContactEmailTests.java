@@ -20,7 +20,7 @@ public class ContactEmailTests extends TestBase {
     }
 
     private <T> String mergeEmails(ContactData contact) {
-        return Arrays.asList(contact.getOneEmail(), contact.getTwoEmail(), contact.getThreeEmail())
+        return Arrays.asList(contact.getEmail(), contact.getTwoEmail(), contact.getThreeEmail())
                 .stream().filter((s) -> ! s.equals(""))
                 .map(ContactPhoneTests::cleaned)
                 .collect(Collectors.joining("\n"));
