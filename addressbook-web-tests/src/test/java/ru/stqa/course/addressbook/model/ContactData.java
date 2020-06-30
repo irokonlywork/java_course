@@ -227,17 +227,13 @@ public class ContactData {
                 ", firstname='" + firstname + '\'' +
                 ", lastname='" + lastname + '\'' +
                 ", email='" + email + '\'' +
-                ", group='" + group + '\'' +
                 ", homePhone='" + homePhone + '\'' +
                 ", mobilePhone='" + mobilePhone + '\'' +
                 ", workPhone='" + workPhone + '\'' +
-                ", allPhones='" + allPhones + '\'' +
                 ", homeAddress='" + homeAddress + '\'' +
                 ", secondaryAddress='" + secondaryAddress + '\'' +
-                ", allAddresses='" + allAddresses + '\'' +
                 ", twoEmail='" + twoEmail + '\'' +
                 ", threeEmail='" + threeEmail + '\'' +
-                ", allEmails='" + allEmails + '\'' +
                 '}';
     }
 
@@ -248,39 +244,33 @@ public class ContactData {
 
         ContactData that = (ContactData) o;
 
+        if ( id != that.id ) return false;
         if ( firstname != null ? ! firstname.equals(that.firstname) : that.firstname != null ) return false;
         if ( lastname != null ? ! lastname.equals(that.lastname) : that.lastname != null ) return false;
         if ( email != null ? ! email.equals(that.email) : that.email != null ) return false;
-        if ( group != null ? ! group.equals(that.group) : that.group != null ) return false;
         if ( homePhone != null ? ! homePhone.equals(that.homePhone) : that.homePhone != null ) return false;
         if ( mobilePhone != null ? ! mobilePhone.equals(that.mobilePhone) : that.mobilePhone != null ) return false;
         if ( workPhone != null ? ! workPhone.equals(that.workPhone) : that.workPhone != null ) return false;
-        if ( allPhones != null ? ! allPhones.equals(that.allPhones) : that.allPhones != null ) return false;
         if ( homeAddress != null ? ! homeAddress.equals(that.homeAddress) : that.homeAddress != null ) return false;
         if ( secondaryAddress != null ? ! secondaryAddress.equals(that.secondaryAddress) : that.secondaryAddress != null )
             return false;
-        if ( allAddresses != null ? ! allAddresses.equals(that.allAddresses) : that.allAddresses != null ) return false;
         if ( twoEmail != null ? ! twoEmail.equals(that.twoEmail) : that.twoEmail != null ) return false;
-        if ( threeEmail != null ? ! threeEmail.equals(that.threeEmail) : that.threeEmail != null ) return false;
-        return allEmails != null ? allEmails.equals(that.allEmails) : that.allEmails == null;
+        return threeEmail != null ? threeEmail.equals(that.threeEmail) : that.threeEmail == null;
     }
 
     @Override
     public int hashCode() {
-        int result = firstname != null ? firstname.hashCode() : 0;
+        int result = id;
+        result = 31 * result + (firstname != null ? firstname.hashCode() : 0);
         result = 31 * result + (lastname != null ? lastname.hashCode() : 0);
         result = 31 * result + (email != null ? email.hashCode() : 0);
-        result = 31 * result + (group != null ? group.hashCode() : 0);
         result = 31 * result + (homePhone != null ? homePhone.hashCode() : 0);
         result = 31 * result + (mobilePhone != null ? mobilePhone.hashCode() : 0);
         result = 31 * result + (workPhone != null ? workPhone.hashCode() : 0);
-        result = 31 * result + (allPhones != null ? allPhones.hashCode() : 0);
         result = 31 * result + (homeAddress != null ? homeAddress.hashCode() : 0);
         result = 31 * result + (secondaryAddress != null ? secondaryAddress.hashCode() : 0);
-        result = 31 * result + (allAddresses != null ? allAddresses.hashCode() : 0);
         result = 31 * result + (twoEmail != null ? twoEmail.hashCode() : 0);
         result = 31 * result + (threeEmail != null ? threeEmail.hashCode() : 0);
-        result = 31 * result + (allEmails != null ? allEmails.hashCode() : 0);
         return result;
     }
 }
