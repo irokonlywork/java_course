@@ -10,6 +10,8 @@ import ru.stqa.course.addressbook.model.Contacts;
 
 import java.util.List;
 
+import static org.testng.Assert.assertEquals;
+
 public class ContactHelper extends HelperBase {
 
     private Contacts contactCache = null;
@@ -29,11 +31,13 @@ public class ContactHelper extends HelperBase {
         type(By.name("address2"), contactData.getSecondaryAddress());
         type(By.name("email2"), contactData.getTwoEmail());
         type(By.name("email3"), contactData.getThreeEmail());
-        //attach(By.name("photo"), contactData.getPhoto());
+        attach(By.name("photo"), contactData.getPhoto());
 
         if ( creation ) {
-            if (contactData.getGroup() != null) {
-                new Select(wd.findElement(By.name("new_group"))).selectByVisibleText(contactData.getGroup());
+            if (contactData.getGroups().size() > 0) {
+                Assert.assertTrue(contactData.getGroups().size() == 1);
+                new Select(wd.findElement(By.name("new_group")))
+                        .selectByVisibleText(contactData.getGroups().iterator().next().getName()); //извлекаем группу и берем ее имя
             }
         } else {
             Assert.assertFalse(isElementPresent(By.name("new_group")));
