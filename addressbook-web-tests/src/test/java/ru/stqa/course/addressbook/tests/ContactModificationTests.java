@@ -1,6 +1,5 @@
 package ru.stqa.course.addressbook.tests;
 
-        import org.testng.Assert;
         import org.testng.annotations.BeforeMethod;
         import org.testng.annotations.Test;
         import ru.stqa.course.addressbook.model.ContactData;
@@ -14,7 +13,8 @@ public class ContactModificationTests extends TestBase {
     @BeforeMethod
     public void ensurePreconditions() {
         if ( app.db().contacts().size() == 0 ) {
-            app.contact().create(new ContactData().withFirstname("Irok").withLastname("Test").withEmail("test@gmail.com"),true);
+            app.contact().create(new ContactData()
+                    .withFirstname("Irok").withLastname("Test").withEmail("test@gmail.com"),true);
         }
     }
 

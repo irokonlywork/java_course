@@ -35,10 +35,25 @@ public class ContactCreationTests extends TestBase {
         return contacts.stream().map((contactData -> new Object[]{contactData})).collect(Collectors.toList()).iterator();
     }
 
-    @Test(dataProvider = "validContactsFromJson")
-    public void testContactCreation(ContactData contact) throws Exception {
+    @Test(dataProvider = "validContactsFromJson", enabled = false)
+    public void testContactCreationFromJson(ContactData contact) {
+        Contacts before = app.db().contacts();
+        app.contact().create(contact, true);
+        assertThat(app.contact().count(), equalTo(before.size() + 1));
+        Contacts after = app.db().contacts();
+        assertThat(after, equalTo(
+                before.withAdded(contact.withId(after.stream().mapToInt(c -> c.getId()).max().getAsInt()))));
+    }
+
+    @Test(enabled = true)
+    public void testContactCreation() throws Exception {
         Groups groups = app.db().groups();
         Contacts before = app.db().contacts();
+        File photo = new File("src/test/resources/qaz.jpg");
+        ContactData contact = new ContactData()
+                .withFirstname("Ирок").withLastname("Тест").withHomePhone("098")
+                .withHomeAddress("Тестовая улица, д. 47").withEmail("test777@mail.com")
+                .withPhoto(photo).inGroup(groups.iterator().next());
         app.contact().create(contact, true);
         assertThat(app.contact().count(), equalTo(before.size() + 1));
         Contacts after = app.db().contacts();
