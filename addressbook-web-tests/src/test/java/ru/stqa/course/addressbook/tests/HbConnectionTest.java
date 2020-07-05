@@ -57,8 +57,7 @@ public class HbConnectionTest {
 
         for (GroupData group : result) {
             System.out.println(group);
+            System.out.println(group.getContacts());
         }
-
-
     }
 }

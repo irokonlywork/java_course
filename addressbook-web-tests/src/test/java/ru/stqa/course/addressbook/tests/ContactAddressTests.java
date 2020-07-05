@@ -13,7 +13,7 @@ public class ContactAddressTests extends TestBase {
 
     @Test (enabled = true)
     public void testContactAddress() {
-        app.goTo().gotoHomePage();
+        app.goTo().HomePage();
         ContactData contact = app.contact().all().iterator().next();
         ContactData contactInfoFromEditForm = app.contact().infoFromEditForm(contact);
         assertThat(contact.getAllAddresses(), equalTo(mergeAddresses(contactInfoFromEditForm)));
