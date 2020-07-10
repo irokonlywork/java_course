@@ -10,18 +10,16 @@ import java.util.stream.Collectors;
 
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.contains;
-import static ru.stqa.course.addressbook.tests.TestBase.app;
 
-public class AddContactToGroupTests {
+public class AddContactToGroupTests extends TestBase {
 
     @BeforeMethod
     public void ensurePreconditions() {
-        if (app.db().contacts().stream()
-                .filter(e -> (e.getGroups().isEmpty())).collect(Collectors.toSet()).size() == 0) {
+        if ( app.db().contacts().stream().filter(e -> (e.getGroups().isEmpty())).collect(Collectors.toSet()).size() == 0 ) {
             app.contact().create(new ContactData().withFirstname("Irok").withLastname("Test"), true);
         }
 
-        if (app.db().groups().size() == 0) {
+        if ( app.db().groups().size() == 0 ) {
             app.goTo().groupPage();
             app.group().create(new GroupData().withName("test"));
         }

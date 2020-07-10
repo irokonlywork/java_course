@@ -12,7 +12,7 @@ import static java.util.stream.Collectors.toSet;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.contains;
 
-public class RemoveContactFromGroupTests extends TestBase{
+public class RemoveContactFromGroupTests extends TestBase {
 
     @BeforeMethod
     public void ensurePreconditions() {

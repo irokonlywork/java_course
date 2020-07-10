@@ -73,7 +73,7 @@ public class ContactData {
 
     @Column(name = "photo")
     @Type(type = "text")
-    private String photo;
+    private String photo = "";
 
     @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(name = "address_in_groups",
