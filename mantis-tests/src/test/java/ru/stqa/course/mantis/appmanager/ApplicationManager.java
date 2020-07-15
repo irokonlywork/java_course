@@ -15,7 +15,7 @@ import java.util.concurrent.TimeUnit;
 public class ApplicationManager {
 
     private final Properties properties;
-    private WebDriver wd;
+    WebDriver wd;
 
     private String browser;
     private RegistrationHelper registrationHelper;
@@ -47,7 +47,7 @@ public class ApplicationManager {
         return properties.getProperty(key);
     }
 
-    public RegistrationHelper registration() {
+    public RegistrationHelper registration() throws IOException {
         if ( registrationHelper == null ) {
             registrationHelper = new RegistrationHelper(this);
         }
@@ -61,7 +61,10 @@ public class ApplicationManager {
         return ftp;
     }
 
-    public WebDriver getDriver() {
+    public WebDriver getDriver() throws IOException {
+        String target = System.getProperty("target", "local");
+        properties.load(new FileReader(new File(String.format("src/test/resources/%s.properties", target))));
+
         if ( wd == null ) {
             if ( browser.equals(BrowserType.CHROME) ) {
                 wd = new ChromeDriver();
@@ -70,7 +73,7 @@ public class ApplicationManager {
             } else if ( browser.equals(BrowserType.SAFARI) ) {
                 wd = new SafariDriver();
             }
-            wd.manage().timeouts().implicitlyWait(0, TimeUnit.SECONDS);
+            wd.manage().timeouts().implicitlyWait(2, TimeUnit.SECONDS);
             wd.get(properties.getProperty("web.baseUrl"));
         }
         return wd;
