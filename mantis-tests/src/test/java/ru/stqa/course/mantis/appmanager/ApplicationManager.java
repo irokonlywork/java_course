@@ -47,7 +47,7 @@ public class ApplicationManager {
         return properties.getProperty(key);
     }
 
-    public RegistrationHelper registration() {
+    public RegistrationHelper registration() throws IOException {
         if ( registrationHelper == null ) {
             registrationHelper = new RegistrationHelper(this);
         }
@@ -61,7 +61,10 @@ public class ApplicationManager {
         return ftp;
     }
 
-    public WebDriver getDriver() {
+    public WebDriver getDriver() throws IOException {
+            String target = System.getProperty("target", "local");
+            properties.load(new FileReader(new File(String.format("src/test/resources/%s.properties", target))));
+
         if ( wd == null ) {
             if ( browser.equals(BrowserType.CHROME) ) {
                 wd = new ChromeDriver();
