@@ -6,13 +6,12 @@ import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
 
 import java.io.File;
-import java.io.IOException;
 
 public class HelperBase {
     protected WebDriver wd;
     protected ApplicationManager app;
 
-    public HelperBase(ApplicationManager app) throws IOException {
+    public HelperBase(ApplicationManager app) {
         this.app = app;
         this.wd = app.getDriver();
     }
